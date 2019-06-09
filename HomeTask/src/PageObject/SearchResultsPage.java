@@ -1,6 +1,8 @@
 package PageObject;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -124,7 +126,7 @@ public class SearchResultsPage extends Base
 		Thread.sleep(3000);
 		ManagePages.initElements();
 	}	
-	public void PrintAllCardResultsIn5Page() throws InterruptedException 
+	public String PrintAllCardResultsIn5Page() throws InterruptedException 
 	{
 		
 		JsonArray array=new JsonArray();
@@ -140,14 +142,18 @@ public class SearchResultsPage extends Base
 			
 		}
 		
-		try (PrintWriter file=new PrintWriter("C:\\temp\\SecurityResultGitHub-"+timeStemp+".json"))
+		String timeStemp = new SimpleDateFormat("yyyy-MM-dd_HH").format(Calendar.getInstance().getTime());
+		
+		String jsonpath = "C:\\temp\\SecurityResultGitHub-"+timeStemp+".json";
+		try (PrintWriter file=new PrintWriter(jsonpath))
 		{
 			file.write(array.toString());
-			file.flush();	
+			file.flush();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		return jsonpath;
 		
 	}
 }

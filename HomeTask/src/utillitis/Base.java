@@ -1,7 +1,5 @@
 package utillitis;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -16,7 +14,7 @@ public class Base {
 	public static WebDriver driver;
 	public static HomePage hp;
 	public static SearchResultsPage sr;
-	public static String timeStemp = new SimpleDateFormat("yyyy-MM-dd_H").format(Calendar.getInstance().getTime());
+	public static DelWithJson DelWithJson;
 	
     public static void setup(){
 		System.setProperty("webdriver.chrome.driver" , "chromedriver.exe");
