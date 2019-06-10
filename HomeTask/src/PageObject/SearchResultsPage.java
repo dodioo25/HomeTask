@@ -27,7 +27,7 @@ public class SearchResultsPage extends Base
 	@FindBy(how = How.CSS, using = "div.codesearch-results > div > div.paginate-container > div > a")
 	protected List<WebElement> Pages ;
 	
-	public void PrintTitel(int resulltNum , JsonObject o) // Checks whether there is a title for a specific result and put it in json object.
+	public void PrintTitel(int resulltNum , JsonObject o) // Check whether there is a title for a specific result and put it in json object.
 	{
 			try {
 			String titel=driver.findElement(By.cssSelector("div > ul > li:nth-child("+resulltNum+") > div > h3 > a")).getText();
@@ -38,7 +38,7 @@ public class SearchResultsPage extends Base
 				return;
 			}		
 	}
-	public void PrintDiscription(int resulltNum , JsonObject o) 
+	public void PrintDiscription(int resulltNum , JsonObject o) // Check whether there is a Discription for a specific result and put it in json object.
 	{
 			try {
 			String Discription=driver.findElement(By.cssSelector("div > ul > li:nth-child("+resulltNum+") > div > p")).getText();
@@ -49,7 +49,7 @@ public class SearchResultsPage extends Base
 				return;
 			}
 	}
-	public void PrintTags(int resulltNum,JsonObject o) 
+	public void PrintTags(int resulltNum,JsonObject o) // Check whether there is a tags for a specific result and put it in json object.
 	{
 				List<WebElement> tags=driver.findElements(By.cssSelector("div > ul > li:nth-child("+resulltNum+") > div > div.topics-row-container > a"));
 				if(tags.isEmpty())
@@ -68,7 +68,7 @@ public class SearchResultsPage extends Base
 				}
 				System.out.println("");
 	}
-	public void PrintLanguge(int resulltNum,JsonObject o) 
+	public void PrintLanguge(int resulltNum,JsonObject o) // Checks whether there is a Languge for a specific result and put it in json object.
 	{
 			try {
 			String Languge =driver.findElement(By.cssSelector("div > ul > li:nth-child("+resulltNum+") > div > div > div > span > span:nth-child(2)")).getText();
@@ -79,7 +79,7 @@ public class SearchResultsPage extends Base
 				return;
 			}
 	}
-	public void PrintStarsAmaount(int resulltNum,JsonObject o) 
+	public void PrintStarsAmaount(int resulltNum,JsonObject o)// Check whether there is a Stars Amaount for a specific result and put it in json object. 
 	{
 			try {
 			String StarsAmaount =driver.findElement(By.cssSelector(" div > ul > li:nth-child("+resulltNum+") > div > div.flex-auto > a")).getText();
@@ -90,7 +90,7 @@ public class SearchResultsPage extends Base
 				return;
 			}
 	}
-	public void PrintTime(int resulltNum,JsonObject o) 
+	public void PrintTime(int resulltNum,JsonObject o) // Check whether there is a Time for a specific result and put it in json object.
 	{
 			try {
 			String Time =driver.findElement(By.cssSelector(" div > ul > li:nth-child("+resulltNum+") > div > div > p > relative-time")).getText();
@@ -102,21 +102,21 @@ public class SearchResultsPage extends Base
 			}
 	}
 	
-	public JsonObject PrintCardResult(int resulltNum) 
+	public JsonObject PrintCardResult(int resulltNum) //insert a json object each result
 	{ 
 		JsonObject obj = new JsonObject();
-		sr.PrintTitel(resulltNum,obj);
-		sr.PrintDiscription(resulltNum, obj);
-		sr.PrintTags(resulltNum,obj);
-		sr.PrintTime(resulltNum,obj);
-		sr.PrintLanguge(resulltNum,obj);
-		sr.PrintStarsAmaount(resulltNum,obj);
+		SearchResultsPage.PrintTitel(resulltNum,obj);
+		SearchResultsPage.PrintDiscription(resulltNum, obj);
+		SearchResultsPage.PrintTags(resulltNum,obj);
+		SearchResultsPage.PrintTime(resulltNum,obj);
+		SearchResultsPage.PrintLanguge(resulltNum,obj);
+		SearchResultsPage.PrintStarsAmaount(resulltNum,obj);
 		System.out.println(obj.toString());
 		System.out.println("----------------------------------");
 		return obj;
 	}
 	
-	public void EnterToPageOneToFive(String num) throws InterruptedException 
+	public void EnterToPageOneToFive(String num) throws InterruptedException   //option to enter 1-5 pages in the serch result page
 	{
 		for (int i = 0; i < Pages.size(); i++) 
 		{
@@ -130,7 +130,7 @@ public class SearchResultsPage extends Base
 		Thread.sleep(3000);
 		ManagePages.initElements();
 	}	
-	public void PrintAllCardResultsIn5Page() throws InterruptedException 
+	public void PrintAllCardResultsIn5Page() throws InterruptedException //print the file of  jsons and start the thrad that braek to jsons
 	{
 		
 		JsonArray array=new JsonArray();

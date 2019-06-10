@@ -25,6 +25,7 @@ public class DelWithJson extends Base
         	JsonArray JsonArray = (JsonArray) parser.parse(reader);
         	int i = 0;
         	while (JsonArray.get(i)!=null) {
+        		JsonArray = (JsonArray) parser.parse(reader);
         		JsonObject jsonobject =JsonArray.get(i).getAsJsonObject();
            
         		JsonObject obj = new JsonObject();
@@ -44,6 +45,7 @@ public class DelWithJson extends Base
         			e.printStackTrace();
         		}
         		i++;
+        		Thread.sleep(100000);
 			}
             }
         catch (Exception e) {

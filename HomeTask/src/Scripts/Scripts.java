@@ -5,19 +5,14 @@ import utillitis.Base;
 
 public class Scripts extends Base
 {
-	public static void Task1() throws InterruptedException {
+	public static void Task() throws InterruptedException { 
 		setup();
-		hp.serchAction("security");
-		sr.PrintAllCardResultsIn5Page();
+		ServiceBar.serchAction("security");
+		SearchResultsPage.PrintAllCardResultsIn5Page();
 		finish();
 	}
 	
-	public static void Task2() {
-		
-		utillitis.DelWithJson.BraekJsonToJsonObjectFiles();
-	}
-	
-	public static void main(String[] args) throws InterruptedException {
-		Task1();
+	public static void main(String[] args) throws InterruptedException { //main method
+		Task();
 	}
 }
