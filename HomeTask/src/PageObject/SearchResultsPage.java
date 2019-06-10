@@ -150,7 +150,7 @@ public class SearchResultsPage extends Base
 	            JsonArray jsonArray = (JsonArray)obj;
 	            boolean flag=true;
 
-	            for (int j = 1; j <= 5 ; j++) {
+	            for (int j = 1; j <= 1 ; j++) {
 					
 					for(int i=0;i<Resullts.size();i++)
 					{

@@ -45,11 +45,12 @@ public class DelWithJson extends Base
         			e.printStackTrace();
         		}
         		i++;
-        		Thread.sleep(100000);
+        		System.out.println(JsonArray.get(i));
 			}
             }
         catch (Exception e) {
 			// TODO: handle exception
 		}
+       
 	}
 }
