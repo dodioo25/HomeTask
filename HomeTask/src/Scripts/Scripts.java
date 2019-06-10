@@ -15,11 +15,9 @@ public class Scripts extends Base
 	public static void Task2() {
 		
 		utillitis.DelWithJson.BraekJsonToJsonObjectFiles();
-		
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
 		Task1();
-		Task2();
 	}
 }

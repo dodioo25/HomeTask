@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import utillitis.Base;
+import utillitis.DelWithJson;
 
 public class SearchResultsPage extends Base
 {
@@ -147,6 +148,7 @@ public class SearchResultsPage extends Base
 	      try {
 	            Object obj = jsonParser.parse(new FileReader(jsonpath));
 	            JsonArray jsonArray = (JsonArray)obj;
+	            boolean flag=true;
 
 	            for (int j = 1; j <= 5 ; j++) {
 					
@@ -157,14 +159,27 @@ public class SearchResultsPage extends Base
 				        file.write(jsonArray.toString());
 				        file.flush();
 				        file.close();
+				        if (flag) {
+				        	task2 taskrunner=new task2();
+				        	taskrunner.start();
+				        	flag=false;
+						}
+				        task2.sleep(10000);
+				        
 					}
 					EnterToPageOneToFive(""+(j+1));
+					
 				}
 	        } catch (IOException e) {
 	            e.printStackTrace();
-	        
-        
 	        	}
-		
+	      
+	}
+}
+
+class task2 extends Thread{
+	public void run() {
+		System.out.println("Thrad2-start");
+		 DelWithJson.BraekJsonToJsonObjectFiles();
 	}
 }

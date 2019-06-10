@@ -39,7 +39,6 @@ public class DelWithJson extends Base
         		{
         			file.write(obj.toString());
         			file.flush();
-        			Thread.sleep(30000);
         		}
         		catch (Exception e) {
         			e.printStackTrace();
@@ -51,5 +50,4 @@ public class DelWithJson extends Base
 			// TODO: handle exception
 		}
 	}
-	
 }
