@@ -5,22 +5,21 @@ import utillitis.Base;
 
 public class Scripts extends Base
 {
-	public static String Task1() throws InterruptedException {
+	public static void Task1() throws InterruptedException {
 		setup();
 		hp.serchAction("security");
-		String jsonPath = sr.PrintAllCardResultsIn5Page();
+		sr.PrintAllCardResultsIn5Page();
 		finish();
-		return jsonPath;
 	}
 	
-	public static void Task2(String JsonPath) {
+	public static void Task2() {
 		
-		utillitis.DelWithJson.BraekJsonToJsonObjectFiles(JsonPath);
+		utillitis.DelWithJson.BraekJsonToJsonObjectFiles();
 		
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
-		String jsonPath= Task1();
-		Task2(jsonPath);
+		Task1();
+		Task2();
 	}
 }

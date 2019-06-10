@@ -1,6 +1,8 @@
 package PageObject;
 
-import java.io.PrintWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -12,6 +14,7 @@ import org.openqa.selenium.support.How;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import utillitis.Base;
 
@@ -126,26 +129,13 @@ public class SearchResultsPage extends Base
 		Thread.sleep(3000);
 		ManagePages.initElements();
 	}	
-	public String PrintAllCardResultsIn5Page() throws InterruptedException 
+	public void PrintAllCardResultsIn5Page() throws InterruptedException 
 	{
 		
 		JsonArray array=new JsonArray();
-		
-		for (int j = 1; j <= 5 ; j++) {
-			
-			for(int i=0;i<Resullts.size();i++)
-			{
-				array.add(PrintCardResult(i+1));
-			}
-			
-			EnterToPageOneToFive(""+(j+1));
-			
-		}
-		
 		String timeStemp = new SimpleDateFormat("yyyy-MM-dd_HH").format(Calendar.getInstance().getTime());
-		
-		String jsonpath = "C:\\temp\\SecurityResultGitHub-"+timeStemp+".json";
-		try (PrintWriter file=new PrintWriter(jsonpath))
+		String jsonpath = "./Jsons/SecurityResultGitHub-"+timeStemp+".json";
+		try (FileWriter file = new FileWriter(jsonpath))
 		{
 			file.write(array.toString());
 			file.flush();
@@ -153,7 +143,28 @@ public class SearchResultsPage extends Base
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		return jsonpath;
+		JsonParser jsonParser = new JsonParser();
+	      try {
+	            Object obj = jsonParser.parse(new FileReader(jsonpath));
+	            JsonArray jsonArray = (JsonArray)obj;
+
+	            for (int j = 1; j <= 5 ; j++) {
+					
+					for(int i=0;i<Resullts.size();i++)
+					{
+						jsonArray.add(PrintCardResult(i+1));
+						FileWriter file = new FileWriter(jsonpath);
+				        file.write(jsonArray.toString());
+				        file.flush();
+				        file.close();
+					}
+					EnterToPageOneToFive(""+(j+1));
+				}
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        
+        
+	        	}
 		
 	}
 }

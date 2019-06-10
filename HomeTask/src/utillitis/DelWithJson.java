@@ -12,15 +12,19 @@ import com.google.gson.JsonParser;
 
 public class DelWithJson extends Base
 {
-	public static void BraekJsonToJsonObjectFiles(String JsonPath) {
+	public static void BraekJsonToJsonObjectFiles() {
+		
+		String timeStempofjson = new SimpleDateFormat("yyyy-MM-dd_HH").format(Calendar.getInstance().getTime());
+		
+		String JsonPath = "./Jsons/SecurityResultGitHub-"+timeStempofjson+".json";
 		
 		JsonParser parser = new JsonParser();
 
         try (Reader reader = new FileReader(JsonPath)) {
 
         	JsonArray JsonArray = (JsonArray) parser.parse(reader);
-        	
-        	for (int i = 0; i < JsonArray.size(); i++) {
+        	int i = 0;
+        	while (JsonArray.get(i)!=null) {
         		JsonObject jsonobject =JsonArray.get(i).getAsJsonObject();
            
         		JsonObject obj = new JsonObject();
@@ -30,16 +34,17 @@ public class DelWithJson extends Base
             	
             	String timeStemp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(Calendar.getInstance().getTime());
             	
-            	String jsonpathtosave = "C:\\temp\\SecurityResultGitHub-OrderOfTheResult"+(i+1)+"-"+timeStemp+".json";
+            	String jsonpathtosave = "./Jsons/SecurityResultGitHub-OrderOfTheResult"+(i+1)+"-"+timeStemp+".json";
         		try (PrintWriter file=new PrintWriter(jsonpathtosave))
         		{
         			file.write(obj.toString());
         			file.flush();
+        			Thread.sleep(30000);
         		}
         		catch (Exception e) {
         			e.printStackTrace();
         		}
-            	
+        		i++;
 			}
             }
         catch (Exception e) {
